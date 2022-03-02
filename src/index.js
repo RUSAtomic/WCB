@@ -42,6 +42,7 @@ bot.load = function load() {
 // Fired on successful login
 bot.onConnect = async function onConnect() {
     this.log(`Logged in as: ${this.client.user.tag} (id: ${this.client.user.id})`)
+    bot.client.user.setPresence({ activities: [{ name: "на нас свысока :)", type: "WATCHING"}], status: 'online' });
 }
 
 // Check and react to messages
@@ -68,6 +69,7 @@ bot.onMessage = async function onMessage(message) {
  */
 
 bot.client.on('ready', bot.onConnect.bind(bot))
+
 bot.client.on('error', err => {
     bot.log(`Client error: ${err.message}`)
 })
