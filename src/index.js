@@ -2,6 +2,7 @@ require('dotenv').config()
 const discord = require('discord.js')
 const config = require('../config.json')
 const botCommands = require('./commands')
+const botListeners = require('./listeners')
 
 const { TOKEN } = process.env
 const { prefix, name } = config
@@ -22,6 +23,7 @@ const bot = {
     client: new discord.Client({intents: ["GUILDS", "GUILD_MESSAGES", "DIRECT_MESSAGES", "GUILD_WEBHOOKS", "GUILD_MESSAGE_REACTIONS"]}),
     log: console.log, // eslint-disable-line no-console
     commands: new discord.Collection(),
+    listeners: new discord.Collection(),
     config: configSchema,
 }
 
@@ -34,6 +36,10 @@ bot.load = function load() {
     this.log('Loading commands...')
     Object.keys(botCommands).forEach(key => {
         this.commands.set(botCommands[key].name, botCommands[key])
+    });
+    this.log('Loading listeners...')
+    Object.keys(botListeners).forEach(key => {
+        this.listeners.set(botListeners[key].name, botListeners[key])
     })
     this.log('Connecting...')
     this.client.login(TOKEN)
@@ -48,7 +54,7 @@ bot.onConnect = async function onConnect() {
 // Check and react to messages
 bot.onMessage = async function onMessage(message) {
     // ignore all other messages without our prefix
-    if (!message.content.startsWith(prefix)) return
+    if (!message.content.startsWith(prefix)) return;
 
     const args = message.content.split(/ +/)
     // get the first word (lowercase) and remove the prefix
@@ -63,6 +69,14 @@ bot.onMessage = async function onMessage(message) {
         message.reply('there was an error trying to execute that command!')
     }
 }
+
+bot.onListening = async function onListening(message) {
+
+    // ignore all other messages with our prefix
+    if (message.content.startsWith(prefix)) return;
+    this.listeners.first().execute(message);
+  
+  };
 
 /*
  * Register event listeners
@@ -80,6 +94,6 @@ bot.client.on('disconnect', evt => {
     bot.log(`Disconnected: ${evt.reason} (${evt.code})`)
 })
 bot.client.on('messageCreate', bot.onMessage.bind(bot))
-
+bot.client.on('messageCreate', bot.onListening.bind(bot))
 // start the bot
 bot.load()

@@ -4,6 +4,7 @@ module.exports = {
     execute(message) {
         if (message.mentions.users.size) {
             const taggedUser = message.mentions.users.first()
+            message.delete();
             message.channel.send(
                 `Информация о пользователе: ${
                     taggedUser.username
@@ -17,6 +18,10 @@ module.exports = {
                     author.username
                 } (аккаунт создан: ${author.createdAt.toUTCString()})`,
             )
+            .then(msg => {
+                setTimeout(() => msg.delete(), 5000)
+                setTimeout(() => message.delete(), 2000)
+              });
         }
     },
 }
