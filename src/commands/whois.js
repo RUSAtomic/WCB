@@ -5,17 +5,17 @@ module.exports = {
         if (message.mentions.users.size) {
             const taggedUser = message.mentions.users.first()
             message.channel.send(
-                `User Info: ${
+                `Информация о пользователе: ${
                     taggedUser.username
-                } (account created: ${taggedUser.createdAt.toUTCString()})`,
+                } (аккаунт создан: ${taggedUser.createdAt.toUTCString()})`,
             )
         } else {
             // default to sender if no user is mentioned
             const { author } = message
             message.reply(
-                `User Self Info: ${
+                `Коротко о себе: ${
                     author.username
-                } (account created: ${author.createdAt.toUTCString()})`,
+                } (аккаунт создан: ${author.createdAt.toUTCString()})`,
             )
         }
     },
