@@ -1,6 +1,6 @@
-# AllBotsEqual
-## All Bits Equal - Discord Bot with Node.js
-One Bot to rule them all ... AllBotsEqual will take over menial task on my server AllBitsEqual and automate simple tasks.
+# WOLF Clan Bot
+## WOLF Clan Bot - Discord Bot with Node.js
+One Bot to rule them all ... WOLF Clan Bot will take over menial task on WOLF Clan server and automate simple tasks.
 
 ## Requirements
 
