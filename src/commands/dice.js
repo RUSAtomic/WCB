@@ -57,6 +57,7 @@ module.exports = {
             embed.addField(`You added the following: `, rest.join(' '))
         }
 
-        message.channel.send({ embed })
-    },
+        //message.channel.send({ embed })
+        message.channel.send({ embeds: [embed] });
+    }
 }

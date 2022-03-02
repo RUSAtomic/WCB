@@ -19,7 +19,7 @@ const configSchema = {
 
 // Define the bot
 const bot = {
-    client: new discord.Client(),
+    client: new discord.Client({intents: ["GUILDS", "GUILD_MESSAGES", "DIRECT_MESSAGES", "GUILD_WEBHOOKS", "GUILD_MESSAGE_REACTIONS"]}),
     log: console.log, // eslint-disable-line no-console
     commands: new discord.Collection(),
     config: configSchema,
@@ -77,7 +77,7 @@ bot.client.on('reconnecting', () => {
 bot.client.on('disconnect', evt => {
     bot.log(`Disconnected: ${evt.reason} (${evt.code})`)
 })
-bot.client.on('message', bot.onMessage.bind(bot))
+bot.client.on('messageCreate', bot.onMessage.bind(bot))
 
 // start the bot
 bot.load()
