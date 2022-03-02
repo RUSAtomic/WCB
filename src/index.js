@@ -37,12 +37,12 @@ bot.load = function load() {
     Object.keys(botCommands).forEach(key => {
         this.commands.set(botCommands[key].name, botCommands[key])
     });
-    this.log(this.commands.name)
+    this.log(this.commands)
     this.log('Loading listeners...');
     Object.keys(botListeners).forEach(key => {
         this.listeners.set(botListeners[key].name, botListeners[key])
     });
-    this.log(this.listeners.name);
+    this.log(this.listeners);
     this.log('Connecting...');
     this.client.login(TOKEN)
 }
