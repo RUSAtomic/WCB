@@ -38,13 +38,7 @@ const getDiceResult = args => {
     }
 }
 
-module.exports = {
-    name: 'dice',
-    description:
-        `Roll a number of dice, either with no argument for 1 d6, ` +
-        `one argument for a number of dice between 1 and 10 or with 2 arguments ` +
-        `to define the dices' sides. (2, 3, 4, 6, 8, 10, 12, 20, 100)`,
-    async execute(message, args, bot) {
+module.exports = async (bot, message, args, argsF) => {
         // run user input through dice function to get formatted results and feedback
         const { type, title, fieldName, fieldContent, rest } = getDiceResult(args)
         // create the embedded message
@@ -59,5 +53,6 @@ module.exports = {
 
         //message.channel.send({ embed })
         message.channel.send({ embeds: [embed] });
-    }
-}
+    };
+
+    module.exports.names = ["dice", "кость"];

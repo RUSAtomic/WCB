@@ -1,8 +1,6 @@
-module.exports = {
-    name: 'who',
-    description: 'Who is this helpful bot?!',
-    execute(message, args, bot) {
+module.exports = async (bot, message, args, argsF) => {
         message.channel.send(`Я ${bot.config.name} и я создан чтобы служить!`);
         message.delete();
-    },
-}
+};
+
+module.exports.names = ["who", "кто"];

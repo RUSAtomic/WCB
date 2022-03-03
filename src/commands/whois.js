@@ -1,7 +1,4 @@
-module.exports = {
-    name: 'whois',
-    description: 'Get information on a certain user.',
-    execute(message) {
+module.exports = async (bot, message, args, argsF) => {
         if (message.mentions.users.size) {
             const taggedUser = message.mentions.users.first()
             message.delete();
@@ -23,5 +20,6 @@ module.exports = {
                 setTimeout(() => message.delete(), 2000)
               });
         }
-    },
-}
+    };
+
+    module.exports.names = ["whois", "ктоты"];
