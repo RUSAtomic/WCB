@@ -7,7 +7,7 @@ module.exports = (bot, member) => {
         \n Будем признательны, если напишешь немного <#932234421866754098> и <#935205582279962684>
         \n Для добавления роли твоего клана введи команду **!clan** или **!клан** и через пробел название клана (WOLF, RFE, IZO или RUN).`)
         .setThumbnail(member.user.displayAvatarURL());
-        member.guild.channels.cache.get(bot.chatID).send({ embeds: [welcomeEmbed] });
+        bot.client.channels.cache.get(bot.chatID).send({ embeds: [welcomeEmbed] });
         bot.log(`---> ${member.user.username}`);
 
 };
