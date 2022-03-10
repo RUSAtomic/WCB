@@ -18,7 +18,7 @@ module.exports = async (bot, message, args, argsF) => {
             .catch(bot.error);
             const Clan = new discord.MessageEmbed()
             .setColor(bot.config.defaultColors.success)
-            .setDescription(`Изменение клана участника **${message.author.username}**:
+            .setDescription(`Изменение клана участника **${message.author.displayName}**:
             \n Добавлен в клан **${role.name}**
             `);
             message.channel.send({ embeds: [Clan] })
