@@ -4,11 +4,10 @@ const fsys = require('fs');
 const path = require('path');
 const config = require('../config.json');
 const { TOKEN } = process.env;
-const { prefix, name } = config;
+const { prefix, name, chat } = config;
 
 // Config
 const configSchema = {
-    name,
     defaultColors: {
         success: '#41b95f',
         neutral: '#287db4',
@@ -24,7 +23,8 @@ const bot = {
     commands: new discord.Collection(),
     listeners: new discord.Collection(),
     config: configSchema,
-    pref: prefix
+    pref: prefix,
+    chatID: chat
 }
 
 
@@ -37,7 +37,7 @@ bot.client.login(TOKEN);
 const commandFiles = fsys.readdirSync(path.resolve(__dirname, 'commands'));
 for (const file of commandFiles) {
     const com = require(`./commands/${file}`);
-    bot.log(com)
+    bot.log("Command add -> "+com.names)
     com.names.forEach(el => {
         bot.commands.set(el, com);
     });
@@ -45,5 +45,5 @@ for (const file of commandFiles) {
 const eventFiles = fsys.readdirSync(path.resolve(__dirname, 'events'));
 for (const efile of eventFiles) {
     const list = require(`./events/${efile}`);
-    bot.log(list);
+    bot.log("Event add -> "+list.names);
 }

@@ -1,6 +1,7 @@
 {
   "prefix": "!",
   "name": "WOLF Clan Bot",
+  "chat": "859413086012440599",
   "cfg": {
     "intents": [
         "GUILDS",
@@ -15,7 +16,8 @@
         "GUILD_MESSAGE_TYPING",
         "DIRECT_MESSAGES",
         "DIRECT_MESSAGE_REACTIONS",
-        "DIRECT_MESSAGE_TYPING"
+        "DIRECT_MESSAGE_TYPING",
+        "GUILD_MEMBERS"
     ]
   }
 }
